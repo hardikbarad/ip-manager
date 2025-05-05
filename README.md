@@ -29,7 +29,7 @@ The project is organized into two main components:
 ### 1. Clone the repository
 
 ```bash
-git clone [<repository-url>](https://github.com/hardikbarad/ip-manager.git)
+git clone [https://github.com/hardikbarad/ip-manager.git](https://github.com/hardikbarad/ip-manager.git)
 cd ip-manager
 ```
 
