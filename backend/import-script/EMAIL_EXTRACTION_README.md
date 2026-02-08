@@ -63,4 +63,4 @@ The Excel file will contain:
 
 The tool uses the following npm packages:
 - `csv-parser`: For reading CSV files
-- `xlsx`: For generating Excel files
+- `exceljs`: For generating Excel files (secure alternative to xlsx)

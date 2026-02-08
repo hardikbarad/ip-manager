@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import csvParser from "csv-parser";
-import * as XLSX from "xlsx";
+import ExcelJS from "exceljs";
 
 const CSV_FILE_PATH = path.resolve(
   process.cwd(),
@@ -70,7 +70,7 @@ function processEmailsAndGenerateExcel() {
           Email: data.Email,
         });
       })
-      .on("end", () => {
+      .on("end", async () => {
         try {
           console.log(`Processed ${results.length} entries`);
           
@@ -82,15 +82,27 @@ function processEmailsAndGenerateExcel() {
             console.log(`${row.Company.padEnd(25)} ${row.Name.padEnd(20)} ${row.Email}`);
           });
 
-          // Create workbook and worksheet
-          const workbook = XLSX.utils.book_new();
-          const worksheet = XLSX.utils.json_to_sheet(results);
+          // Create workbook and worksheet using ExcelJS
+          const workbook = new ExcelJS.Workbook();
+          const worksheet = workbook.addWorksheet("Company Names");
 
-          // Add worksheet to workbook
-          XLSX.utils.book_append_sheet(workbook, worksheet, "Company Names");
+          // Add header row
+          worksheet.columns = [
+            { header: "Company", key: "Company", width: 25 },
+            { header: "Name", key: "Name", width: 20 },
+            { header: "Email", key: "Email", width: 40 },
+          ];
+
+          // Add data rows
+          results.forEach((row) => {
+            worksheet.addRow(row);
+          });
+
+          // Style the header row
+          worksheet.getRow(1).font = { bold: true };
 
           // Write to file
-          XLSX.writeFile(workbook, OUTPUT_FILE_PATH);
+          await workbook.xlsx.writeFile(OUTPUT_FILE_PATH);
 
           console.log(`\nExcel file successfully created at: ${OUTPUT_FILE_PATH}`);
           process.exit(0);
