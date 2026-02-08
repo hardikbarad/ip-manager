@@ -49,7 +49,7 @@ function extractFirstName(email: string): string {
 }
 
 // Function to process CSV and generate Excel
-async function processEmailsAndGenerateExcel() {
+function processEmailsAndGenerateExcel() {
   try {
     // Check if CSV file exists
     if (!fs.existsSync(CSV_FILE_PATH)) {
@@ -75,11 +75,11 @@ async function processEmailsAndGenerateExcel() {
           console.log(`Processed ${results.length} entries`);
           
           // Display results
-          console.log("\nExtracted Names:");
-          console.log("Company\t\t\tName\t\tEmail");
+          console.log(`\nExtracted Names:`);
+          console.log(`${"Company".padEnd(25)} ${"Name".padEnd(20)} Email`);
           console.log("=".repeat(80));
           results.forEach((row) => {
-            console.log(`${row.Company}\t\t${row.Name}\t\t${row.Email}`);
+            console.log(`${row.Company.padEnd(25)} ${row.Name.padEnd(20)} ${row.Email}`);
           });
 
           // Create workbook and worksheet
