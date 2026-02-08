@@ -10,6 +10,7 @@ A MERN stack application for managing and displaying IP address data with filter
 - Pagination support for large datasets
 - Responsive design for desktop and mobile
 - Detailed view for each IP address entry
+- **Email Name Extraction Tool**: Extract first names from email addresses and generate Excel reports
 
 ## Project Structure
 
@@ -47,6 +48,16 @@ Run the import script to load the CSV data into MongoDB:
 ```bash
 npm run import
 ```
+
+### 4. Email Name Extraction Tool (Optional)
+
+To extract first names from company emails and generate an Excel file:
+
+```bash
+npm run extract-names
+```
+
+This will read `backend/import-script/company-emails.csv` and generate `backend/import-script/company-names-output.xlsx` with Company, Name, and Email columns. See [Email Extraction README](backend/import-script/EMAIL_EXTRACTION_README.md) for more details.
 
 ### 5. Start the backend server
 

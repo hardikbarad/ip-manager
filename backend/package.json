@@ -6,7 +6,8 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
-    "import": "ts-node import-script/import-data.ts"
+    "import": "ts-node import-script/import-data.ts",
+    "extract-names": "ts-node import-script/extract-names.ts"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,7 @@
     "cors": "^2.8.5",
     "csv-parser": "^3.2.0",
     "dotenv": "^16.5.0",
+    "exceljs": "^4.4.0",
     "express": "^5.1.0",
     "mongoose": "^7.8.7",
     "morgan": "^1.10.0"
